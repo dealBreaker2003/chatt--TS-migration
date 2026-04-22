@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite0tsc -b && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -14,9 +14,12 @@
     "vue": "^3.5.26"
   },
   "devDependencies": {
+    "@types/node": "^25.6.0",
     "@vitejs/plugin-vue": "^6.0.3",
+    "typescript": "^6.0.3",
     "vite": "^7.3.1",
-    "vite-plugin-vue-devtools": "^8.0.5"
+    "vite-plugin-vue-devtools": "^8.0.5",
+    "vue-tsc": "^3.2.7"
   },
   "engines": {
     "node": "^20.19.0 || >=22.12.0"
