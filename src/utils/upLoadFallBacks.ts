@@ -1,4 +1,6 @@
-export const handleFallBacks = async (Ids, Blobs) => {
+
+
+export const handleFallBacks = async (Ids: string[], Blobs: Blob[]): Promise<void> => {
     //  空置处理
     if (!Array.isArray(Ids) || !Array.isArray(Blobs) || Ids.length === 0) {
         throw new Error('传入数组错误: Ids 或 Blobs 格式不正确或为空');
@@ -32,9 +34,7 @@ export const handleFallBacks = async (Ids, Blobs) => {
     }
 
     const data = await response.json();
-    if (data.success) {
-        return data.data;
-    } else {
+    if (!data.success) {
         throw new Error(`服务器存储失败：${data.message}`);
     }
 };
