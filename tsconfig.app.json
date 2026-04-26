@@ -23,6 +23,7 @@
         "noFallthroughCasesInSwitch": true,
         /* 允许混合 JS 和 TS，方便渐进式迁移 */
         "allowJs": true,
+        "ignoreDeprecations": "6.0",
         /* 路径别名配置 (继承自你以前的 jsconfig) */
         "baseUrl": ".",
         "paths": {
