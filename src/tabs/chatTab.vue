@@ -205,7 +205,7 @@ const handleMsgEnter = async (event) => {
                     scrollToFloor()
                     break;
                 case "done":
-                    if (Array.isArray(data.imageIds) && data.imageIds.length) {
+                    if (Array.isArray(data.imageIds) && data.imageIds.length && token) {
                         try {
                             handleFallBacks(data.imageIds, fallBackBlobs.value)
                         } catch (error) {
