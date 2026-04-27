@@ -52,7 +52,6 @@ const getFetch = async <T = any>(
       }
       //  常规路径
       const data: ApiResponse<T> = await response.json();
-      console.log(data);
       return data;
     } else {
       throw new Error('状态码错误');
