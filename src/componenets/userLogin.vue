@@ -97,9 +97,32 @@ const userLogin = async () => {
     gap: 10px;
 }
 
+input {
+    padding: 8px;
+    border-radius: 4px;
+    border: none;
+    outline: none;
+}
+
+button {
+    border: none;
+    outline: none;
+    background-color: #f0f0f0;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+button:hover {
+    background: linear-gradient(135deg, #4b6cb7, #182848);
+    color: white;
+}
+
 .exit-button {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     background-color: white;
     position: absolute;
     right: 20px;
@@ -107,5 +130,13 @@ const userLogin = async () => {
     top: 20px;
     display: flex;
     justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    padding: 0;
+}
+
+.exit-button:hover {
+    background: red;
+    color: white;
 }
 </style>

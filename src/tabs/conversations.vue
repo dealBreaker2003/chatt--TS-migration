@@ -2,12 +2,15 @@
     <div class="container">
         <button class="createNewConvo" @click="createNewConvo">New Convo</button>
         <div class="conversation" v-for="(conversation, index) in conversations" @click="choseConvo(conversation)"
-            ref="convoList" style="display: flex;">
+            :class="{ active: conversationIdRef === conversation.id }"
+            ref="convoList" style="display: flex; align-items: center;">
             <div class="title">
                 {{ conversation.title }}
             </div>
-            <button class="title-change-btn" @click="shareIndex(index)">change</button>
-            <button class="delete-btn" @click="handleConvoDelete(conversation, index)">Delete</button>
+            <div class="convo-actions">
+                <button class="title-change-btn" @click.stop="shareIndex(index)">/</button>
+                <button class="delete-btn" @click.stop="handleConvoDelete(conversation, index)">-</button>
+            </div>
         </div>
         <input type="text" v-model="newTitle" v-show="showTitle" @keypress="handleTitleChange">
     </div>
@@ -96,5 +99,74 @@ defineExpose({ choseConvo })
 .container {
     display: flex;
     flex-direction: column;
+    width: 180px;
+    flex-shrink: 0;
+    border-right: 1px solid #eee;
+    height: 100vh;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: #fafafa;
+}
+
+.createNewConvo {
+    margin-bottom: 15px;
+    background: linear-gradient(135deg, #e0eafc, #cfdef3);
+    color: #333;
+}
+
+.createNewConvo:hover {
+    background: linear-gradient(135deg, #4b6cb7, #182848);
+    color: white;
+}
+
+.conversation {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #eaeaea;
+    border-radius: 8px;
+    margin-bottom: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.conversation:hover {
+    background-color: #ececec;
+}
+
+.conversation.active {
+    background-color: #d0d7e6;
+    font-weight: bold;
+}
+
+.title {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 14px;
+}
+
+.convo-actions {
+    display: flex;
+    gap: 5px;
+}
+
+button {
+    border: none;
+    outline: none;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background: linear-gradient(135deg, #4b6cb7, #182848);
+    color: white;
+}
+
+.title-change-btn, .delete-btn {
+    padding: 2px 6px;
+    font-size: 12px;
 }
 </style>

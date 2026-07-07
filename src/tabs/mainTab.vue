@@ -2,10 +2,12 @@
     <div class="container">
         <div class="head-bar">
             <p>Chat Bot</p>
-            <button class="login-btn" @click="showLoginModal = true;" v-if="!isLogin">Login</button>
-            <button class="logout-btn" @click="handleLogout" v-if="isLogin">Logout</button>
-            <div class="user-info" v-if="isLogin">
-                <div class="user-name">username:{{ userInfoRef.username }}</div>
+            <div class="right-controls">
+                <button class="login-btn" @click="showLoginModal = true;" v-if="!isLogin">Login</button>
+                <button class="logout-btn" @click="handleLogout" v-if="isLogin">Logout</button>
+                <div class="user-info" v-if="isLogin">
+                    <div class="user-name">username:{{ userInfoRef.username }}</div>
+                </div>
             </div>
         </div>
         <userLogin v-if="showLoginModal" class="userLogin" @on-login="onLogin" @exit="showLoginModal = false">
@@ -56,7 +58,10 @@ const messageContent = ref('')
 const scrollArea = ref(null);
 
 const sendMessageIn = async (event) => {
-    if (event.key !== 'Enter' || messageContent.value === '') return;
+    if (event.key !== 'Enter' || messageContent.value === '') {
+        alert("请输入内容！")
+        return;
+    }
     const currentTimestamp = getDate()
     messages.value.push(new Message(messageContent.value, currentTimestamp, 'user', imageUrls.value))
     const newMessageContent = messageContent.value;
@@ -198,6 +203,30 @@ const onLogin = () => {
     justify-content: center;
     align-items: center;
     font-weight: bold;
+    position: relative;
+}
+
+.right-controls {
+    position: absolute;
+    right: 30px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+button {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+button:hover {
+    background: linear-gradient(135deg, #4b6cb7, #182848);
+    color: white;
 }
 
 .message-bubble {
@@ -285,14 +314,15 @@ const onLogin = () => {
     border-radius: 5px;
     transition: all 0.5s ease;
     font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
 }
 
 .add-btn:hover {
-    background-color: rgb(192, 192, 192);
-}
-
-.login-btn {
-    align-items: flex-end;
+    background: linear-gradient(135deg, #4b6cb7, #182848);
+    color: white;
 }
 
 .userLogin {
@@ -300,5 +330,6 @@ const onLogin = () => {
     top: 200px;
     left: 50%;
     transform: translateX(-50%);
+    z-index: 10;
 }
 </style>
